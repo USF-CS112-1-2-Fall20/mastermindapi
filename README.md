@@ -1,4 +1,4 @@
-Hangman API for Google Cloud App Engine
+Mastermind API starter code for Google Cloud App Engine
 ============================
 
 This code should work for Java8 or Java11. You also need Maven and Google Cloud installed.
@@ -11,6 +11,9 @@ This code should work for Java8 or Java11. You also need Maven and Google Cloud 
 
     mvn appengine:run
 
+    if using Intellij, Run | Edit configurations, choose Maven project,
+       then put appengine:run in command line
+
 To use visit: http://localhost:8080/
 
 ### Deploying
@@ -21,8 +24,6 @@ To use visit:  https://YOUR-PROJECT-ID.appspot.com
 
 ### Running with Thunkable Front End
 
-This API can be used by any web or app client (front-end). Here is a sample
-Thunkable client: https://x.thunkable.com/copy/ceb4de10aa8fe039381ea377eb6dc032
+This API can be used by any web or app client (front-end).
 
-To run it, open the link above and in the Blocks change the URL to yours.
 
