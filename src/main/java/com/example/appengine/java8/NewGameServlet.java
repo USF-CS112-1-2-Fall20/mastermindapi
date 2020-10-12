@@ -35,14 +35,12 @@ public class NewGameServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession();
-        HangmanDM hangman= new HangmanDM();
-        hangman.phrase = hangman.randomPhrase();
-        hangman.hiddenPhrase=hangman.getHiddenPhrase();
+        Mastermind mastermind=new Mastermind();
 
-        session.setAttribute("hangman",hangman);
+        session.setAttribute("mastermind",mastermind);
 
         Gson gson= new Gson();
-        String jsonString = gson.toJson(hangman);
+        String jsonString = gson.toJson(mastermind);
         response.getWriter().println(jsonString);
 
 

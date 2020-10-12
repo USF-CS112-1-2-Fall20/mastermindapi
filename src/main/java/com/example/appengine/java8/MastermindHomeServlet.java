@@ -20,6 +20,7 @@ package com.example.appengine.java8;
 
 import com.google.gson.Gson;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,33 +29,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 // With @WebServlet annotation the webapp/WEB-INF/web.xml is no longer required.
-@WebServlet(name = "ProcessGuessServlet", value = "/processGuess")
-public class ProcessGuessServlet extends HttpServlet {
+@WebServlet(name = "MastermindHomeServlet", value = "/")
+public class MastermindHomeServlet extends HttpServlet {
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        HttpSession session = request.getSession();
-        HangmanDM hangman= (HangmanDM) session.getAttribute("hangman");
-        if (hangman==null) { // called before doing a new game
-            hangman= new HangmanDM();
-            hangman.phrase = hangman.randomPhrase();
-            hangman.hiddenPhrase=hangman.getHiddenPhrase();
+            throws ServletException, IOException {
 
-            session.setAttribute("hangman",hangman);
-        }
-        String guessS=request.getParameter("guess");
-        if (guessS.length()>0) {
-            char c = guessS.charAt(0);
-            HangmanResponse hmResponse=hangman.processGuess(c);
-            session.setAttribute("hangman",hangman);
+        request.getRequestDispatcher("/mastermind.jsp").forward(request, response);
 
-            Gson gson= new Gson();
-            String jsonString = gson.toJson(hmResponse);
-            response.getWriter().println(jsonString);
-        }
-        else {
-            response.getWriter().println("");
-        }
+
     }
+
+
+
 }
 // [END example]
